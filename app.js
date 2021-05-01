@@ -1,18 +1,20 @@
 const express = require('express');
 const app = express();
-const path = require('path');
 const mongoose = require('mongoose');
+const path = require('path');
 const methodOverride = require('method-override');
+const Campground = require('./models/campground');
 
-// mongoose.connect('mongodb://localhost:27017/farmStand', {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     useFindAndModify: false
-// }).then(() => {
-//     console.log('Mongo Connection Open');
-// }).catch((err) => {
-//     console.log('Mongo Error:', err);
-// });
+mongoose.connect('mongodb://localhost:27017/yelp-camp', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+}).then(() => {
+    console.log('Mongo Connection Open');
+}).catch((err) => {
+    console.log('Mongo Error:', err);
+});
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -29,6 +31,17 @@ app.use(methodOverride('X-Method-Override'));
 
 app.get('/', (req, res) => {
     res.render('home');
+});
+
+app.get('/makecampground', async (req, res) => {
+    const camp = new Campground({
+        title: 'My Backyard',
+        description: 'Cheap Camping',
+        location: 'Keenesburg, Colorado',
+        price: '$40.00'
+    });
+    await camp.save();
+    res.send(camp);
 });
 
 app.listen(3000, () => {

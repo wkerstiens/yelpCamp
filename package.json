@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "local": "nodemon app.js",
+    "seedData": "node ./seeds/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

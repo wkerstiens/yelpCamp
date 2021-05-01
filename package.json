@@ -10,6 +10,10 @@
     "Yelp",
     "Camp"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wkerstiens/yelpCamp.git"
+  },
   "author": "William Kerstiens",
   "license": "ISC"
 }

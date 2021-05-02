@@ -12,8 +12,10 @@
       crossorigin="anonymous"
     />
   </head>
-  <body>
-    <main class="container"><%- body %></main>
+  <body class="d-flex flex-column vh-100">
+    <%- include('../partials/navbar') %>
+    <main class="container mt-5"><%- body %></main>
+    <%- include('../partials/footer') %>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
       integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"

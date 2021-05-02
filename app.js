@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
 const mongoose = require('mongoose');
 const path = require('path');
 const methodOverride = require('method-override');
@@ -20,9 +21,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 /* All the middleware that this app will need */
+
+app.use(morgan('tiny'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(methodOverride('_method'));
 app.use(methodOverride('X-HTTP-Method'));
 app.use(methodOverride('X-HTTP-Method-Override'));
@@ -49,9 +52,24 @@ app.get('/campgrounds/new', (req, res) => {
 });
 
 app.get('/campgrounds/:id', async (req, res) => {
-    const { id } = req.params;
-    const campground = await Campground.findById(id);
+    const campground = await Campground.findById(req.params.id);
     res.render('campgrounds/show', { campground });
+});
+
+app.get('/campgrounds/:id/edit', async (req, res) => {
+    const campground = await Campground.findById(req.params.id);
+    res.render('campgrounds/edit', { campground });
+});
+
+app.put('/campgrounds/:id', async (req, res) => {
+    await Campground.findByIdAndUpdate(req.params.id, req.body.campground, { runValidators: true, new: true });
+    res.redirect(`/campgrounds/${req.params.id}`);
+});
+
+app.delete('/campgrounds/:id', async (req, res) => {
+    const { id } = req.params;
+    await Campground.findByIdAndDelete(id);
+    res.redirect('/campgrounds');
 });
 
 app.listen(3000, () => {

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const ejsMate = require('ejs-mate');
 const path = require('path');
 const methodOverride = require('method-override');
 const Campground = require('./models/campground');
@@ -17,12 +18,13 @@ mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     console.log('Mongo Error:', err);
 });
 
+app.engine('ejs', ejsMate);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 /* All the middleware that this app will need */
 
-app.use(morgan('tiny'));
+app.use(morgan('common'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

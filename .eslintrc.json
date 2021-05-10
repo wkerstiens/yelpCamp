@@ -34,12 +34,6 @@
             {
                 "argsIgnorePattern": "next"
             }
-        ],
-        "no-undef": [
-            "error",
-            {
-                "argsIgnorePattern": "document"
-            }
         ]
     }
 }

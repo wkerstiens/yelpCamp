@@ -23,10 +23,16 @@ const sample = array => array[Math.floor(Math.random() * array.length)];
 const seedDB = async () => {
     await Campground.deleteMany({});
     await Review.deleteMany({});
+    const authors = [
+        '60a02e2991ef7f124a4f2d09',
+        '60a04381337ad2179e82ddfa',
+        '60a04721ebb4261bc654ac2f'
+    ];
     for (let i = 0; i < 50; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
         const price = parseFloat(((Math.random() * 30) + 20).toFixed(2));
         const camp = new Campground({
+            author: authors[random1000 % 3],
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
             image: 'https://source.unsplash.com/collection/483251',

@@ -8,7 +8,7 @@ mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
-});
+}).then();
 
 const db = mongoose.connection;
 
@@ -46,6 +46,6 @@ const seedDB = async () => {
     }
 };
 
-seedDB().then(() => {
-    mongoose.connection.close();
+seedDB().then(async () => {
+    await mongoose.connection.close();
 });

@@ -4,6 +4,9 @@
         "node": true
     },
     "extends": "eslint:recommended",
+    "plugins": [
+        "ejs-js"
+    ],
     "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module"

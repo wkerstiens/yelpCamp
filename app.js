@@ -79,7 +79,7 @@ app.get('/', (req, res) => {
 });
 
 app.all('*', (req, res, next) => {
-    next(new ExpressError('Resource not found', 404));
+    next(new ExpressError(404, 'Resource not found'));
 });
 
 app.use((err, req, res, next) => {

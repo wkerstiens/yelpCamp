@@ -28,14 +28,17 @@ const seedDB = async () => {
         '60a04381337ad2179e82ddfa',
         '60a04721ebb4261bc654ac2f'
     ];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 10; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
         const price = parseFloat(((Math.random() * 30) + 20).toFixed(2));
         const camp = new Campground({
             author: authors[random1000 % 3],
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: 'https://source.unsplash.com/collection/483251',
+            images: {
+                url: 'https://res.cloudinary.com/wak/image/upload/v1621561996/YelpCamp/fasrdplpwcybzor1akj7.jpg',
+                filename: 'YelpCamp/fasrdplpwcybzor1akj7'
+            },
             description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, similique sed aut vero repudiandae voluptatum quos consequuntur nostrum id quasi quia, commodi odit maiores, recusandae magni minima veritatis earum fugit?
             Sapiente dolorum ea, totam accusantium quisquam necessitatibus maiores optio sequi molestiae inventore dignissimos quibusdam doloremque error magnam at. Quasi veniam odit quas praesentium sapiente, aspernatur dolores ullam architecto doloribus facere.
             Minima rerum eum qui dolorem pariatur, culpa nihil iure perferendis aspernatur dolor dolore illum consectetur vel alias. Expedita, amet quia deserunt maiores iste nesciunt, quaerat ipsa dolor praesentium dolorem quo?

@@ -1,42 +1,50 @@
 {
-    "env": {
-        "es6": true,
-        "node": true
-    },
-    "extends": "eslint:recommended",
-    "plugins": [
-        "ejs-js"
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": "off",
+    "indent": [
+      "error",
+      4,
+      {
+        "SwitchCase": 2
+      }
     ],
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "rules": {
-        "no-console": "off",
-        "indent": [
-            "error",
-            4,
-            {
-                "SwitchCase": 2
-            }
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "next"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.ejs"],
+      "rules": {
         "semi": [
-            "error",
-            "always"
-        ],
-        "no-unused-vars": [
-            "error",
-            {
-                "argsIgnorePattern": "next"
-            }
+          "off",
+          "never"
         ]
+      }
     }
+  ]
 }
